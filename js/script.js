@@ -8,7 +8,7 @@ import initTabNav from "./modules/nav-tab.js";
 initTabNav(); // navegação animada no meu nav
 import initModal from "./modules/modal.js";
 initModal(); // abre modal de login quando ativado
-import initTooTip from "./modules/tooltip.js";
-initTooTip(); // abre o toltip onde possivel
+import initTooltip from "./modules/tooltip.js";
+initTooltip(); // abre o toltip onde possivel
 import initDropdownMenu from "./modules/dropdown-menu.js";
 initDropdownMenu(); // dropdown do menu

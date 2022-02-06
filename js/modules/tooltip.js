@@ -1,43 +1,44 @@
-export default function initTooTip() {
-  const tooltip = document.querySelectorAll("[data-tooltip]");
+export default function initTooltip() {
+  const tooltips = document.querySelectorAll("[data-tooltip]");
 
-  tooltip.forEach((item) => {
-    item.addEventListener("mouseover", onMouseOver);
+  tooltips.forEach((tooltip) => {
+    tooltip.addEventListener("mouseover", onMouseOver);
   });
 
-  function onMouseOver(event) {
-    const toolTipBox = criarToltipBox(this);
-    toolTipBox.style.top = event.screenY + "px";
-    toolTipBox.style.left = event.pageX + "px";
+  function onMouseOver() {
+    const tooltip = createTooltipBox(this);
 
-    onMouseMove.toolTipBox = toolTipBox;
+    onMouseMove.tooltip = tooltip;
     this.addEventListener("mousemove", onMouseMove);
 
-    onMouseLeave.toolTipBox = toolTipBox;
+    onMouseLeave.tooltip = tooltip;
     onMouseLeave.element = this;
     this.addEventListener("mouseleave", onMouseLeave);
   }
+
+  const onMouseMove = {
+    handleEvent(event) {
+      this.tooltip.style.top = event.pageY + 20 + "px";
+      this.tooltip.style.left = event.pageX + 20 + "px";
+    },
+  };
+
   const onMouseLeave = {
     handleEvent() {
-      this.toolTipBox.remove();
+      this.tooltip.remove();
       this.element.removeEventListener("mouseleave", onMouseLeave);
       this.element.removeEventListener("mousemove", onMouseMove);
     },
   };
 
-  const onMouseMove = {
-    handleEvent(event) {
-      this.toolTipBox.style.top = event.screenY + "px";
-      this.toolTipBox.style.left = event.pageX + "px";
-    },
-  };
-
-  const criarToltipBox = (element) => {
-    const toolTipBox = document.createElement("div");
+  function createTooltipBox(element) {
+    const tooltip = document.createElement("div");
     const text = element.getAttribute("aria-label");
-    toolTipBox.classList.add("tooltip");
-    toolTipBox.innerHTML = text;
-    document.body.appendChild(toolTipBox);
-    return toolTipBox;
-  };
+    tooltip.classList.add("tooltip");
+    tooltip.innerText = text;
+    document.body.appendChild(tooltip);
+
+    return tooltip;
+  }
 }
+initTooltip();
