@@ -12,3 +12,5 @@ import initTooltip from "./modules/tooltip.js";
 initTooltip(); // abre o toltip onde possivel
 import initDropdownMenu from "./modules/dropdown-menu.js";
 initDropdownMenu(); // dropdown do menu
+import initMenuMobile from "./modules/menu-mobile.js";
+initMenuMobile(); //Menu Mobile
