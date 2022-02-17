@@ -22,5 +22,6 @@ export default class TabNav {
         itemMenu.addEventListener("click", () => this.activeTab(index));
       });
     }
+    return this;
   }
 }
